@@ -128,7 +128,7 @@
                                 <nav>
                                     <ul id="navigation" style="margin-bottom:0px">
                                         <li><a href="index.php">Beranda</a></li>
-                                        <li><a href="index.php">Profil</a></li>
+                                        <li><a href="profil.php">Profil</a></li>
                                         <!-- <li><a href="visimisi.php">Visi & Misi</a></li> -->
                                         <li><a href="news-list.php">Berita</a></li>
                                         <li><a href="galeri.php">Galeri</a></li>
