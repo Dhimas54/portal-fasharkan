@@ -130,9 +130,9 @@
                                         <li><a href="index.php">Beranda</a></li>
                                         <li><a href="profil.php">Profil</a></li>
                                         <!-- <li><a href="visimisi.php">Visi & Misi</a></li> -->
-                                        <li><a href="news-list.php">Berita</a></li>
+                                        <li><a href="berita.php">Berita</a></li>
                                         <li><a href="galeri.php">Galeri</a></li>
-                                        <li><a href="galeri.php">Pelayanan Publik</a></li>
+                                        <li><a href="pelayanan.php">Pelayanan Publik</a></li>
 
                                         <!-- <li><a href="about.php">Sejarah</a></li> -->
                                         <li><a href="contact.php">Kontak</a></li>
