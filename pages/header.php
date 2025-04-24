@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="manifest" href="site.webmanifest">
 <?php $currenturl="http://".$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']; ?>
-<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logofs.png">
+<link rel="shortcut icon" type="image/x-icon" href="assets/img/logo/logofs1.png">
 		<!-- CSS here -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
