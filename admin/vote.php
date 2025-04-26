@@ -2,6 +2,7 @@
 session_start();
 include('includes/config.php');
 error_reporting(0);
+
 if (strlen($_SESSION['login']) == 0) {
     header('location:index.php');
 } else {
@@ -20,8 +21,8 @@ if (strlen($_SESSION['login']) == 0) {
     // Code for deletion
     if ($_GET['action'] == 'del' && $_GET['rid']) {
         $id = intval($_GET['rid']);
-        $query = mysqli_query($con, "delete from  tblcomments  where id='$id'");
-        $delmsg = "Comment deleted forever";
+        $query = mysqli_query($con, "delete from  tblvote  where id='$id'");
+        $delmsg = "Vote deleted forever";
     }
 
 ?>
@@ -29,7 +30,7 @@ if (strlen($_SESSION['login']) == 0) {
     <html lang="en">
 
     <head>
-        <title> | Kelola Komentar</title>
+        <title> | Kelola Vote</title>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -60,16 +61,16 @@ if (strlen($_SESSION['login']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Kelola Komentar Belum Disetujui</h4>
+                                    <h4 class="page-title">Kelola Vote</h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="#">Admin</a>
                                         </li>
                                         <li>
-                                            <a href="#">Komentar </a>
+                                            <a href="#">Vote </a>
                                         </li>
                                         <li class="active">
-                                            Komentar Belum Disetujui
+                                            Kelola Vote
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -101,45 +102,30 @@ if (strlen($_SESSION['login']) == 0) {
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>
-                                                        <th>Nama</th>
-                                                        <th>Email Id</th>
-                                                        <th width="300">Komentar</th>
-                                                        <th>Status</th>
-                                                        <th>Post / Berita</th>
-                                                        <th>Tanggal Posting</th>
+                                                        <th>Ip Address</th>
+                                                        <th>Type Vote</th>
+                                                        <th>Isi Saran</th>
+                                                        <th>Cookies Id</th>
+                                                        <th>Waktu Vote</th>
                                                         <th>Aksi</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $query = mysqli_query($con, "Select tblcomments.id,  tblcomments.name,tblcomments.email,tblcomments.postingDate,tblcomments.comment,tblposts.id as postid,tblposts.PostTitle from  tblcomments join tblposts on tblposts.id=tblcomments.postId where tblcomments.status=0");
+                                                    $query = mysqli_query($con, "SELECT * FROM tblvote");
                                                     $cnt = 1;
                                                     while ($row = mysqli_fetch_array($query)) {
                                                     ?>
 
                                                         <tr>
                                                             <th scope="row"><?php echo htmlentities($cnt); ?></th>
-                                                            <td><?php echo htmlentities($row['name']); ?></td>
-                                                            <td><?php echo htmlentities($row['email']); ?></td>
-                                                            <td><?php echo htmlentities($row['comment']); ?></td>
-                                                            <td><?php $st = $row['status'];
-                                                                if ($st == '0'):
-                                                                    echo "Wating for approval";
-                                                                else:
-                                                                    echo "Approved";
-                                                                endif;
-                                                                ?></td>
-
-                                                            <td><a href="edit-post.php?pid=<?php echo htmlentities($row['postid']); ?>"><?php echo htmlentities($row['PostTitle']); ?></a> </td>
-                                                            <td><?php echo htmlentities($row['postingDate']); ?></td>
+                                                            <td><?php echo htmlentities($row['ip_address']); ?></td>
+                                                            <td><?php echo htmlentities($row['vote_type']); ?></td>
+                                                            <td><?php echo htmlentities($row['isi_saran']); ?></td>
+                                                            <td><?php echo htmlentities($row['cookie_id']); ?></td>
+                                                            <td><?php echo htmlentities($row['created_at']); ?></td>
                                                             <td>
-                                                                <?php if ($st == '0'): ?>
-                                                                    <a href="unapprove-comment.php?disid=<?php echo htmlentities($row['id']); ?>" title="Disapprove this comment"><i class="ion-arrow-return-right" style="color: #29b6f6;"></i></a>
-                                                                <?php else : ?>
-                                                                    <a href="unapprove-comment.php?appid=<?php echo htmlentities($row['id']); ?>" title="Approve this comment"><i class="ion-arrow-return-right" style="color: #29b6f6;"></i></a>
-                                                                <?php endif; ?>
-
-                                                                &nbsp;<a href="unapprove-comment.php?rid=<?php echo htmlentities($row['id']); ?>&&action=del"> <i class="fa fa-trash-o" style="color: #f05050"></i></a>
+                                                                &nbsp;<a href="vote.php?rid=<?php echo htmlentities($row['id']); ?>&&action=del"> <i class="fa fa-trash-o" style="color: #f05050"></i></a>
                                                             </td>
                                                         </tr>
                                                     <?php

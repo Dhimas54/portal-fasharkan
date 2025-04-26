@@ -121,7 +121,7 @@
                         <div class="col-xl-10 col-lg-10 col-md-12 header-flex d-flex justify-content-between">
                             <!-- sticky -->
                             <div class="sticky-logo">
-                                <a href="index.php"><img src="assets/img/logo/fsbanner_2.png" alt="Logo" class="img-fluid" style="max-height: 80px;" id="responsive-logo"></a>
+                                <a href="index.php"><img src="assets/img/logo/fsbanner1.png" alt="Logo" class="img-fluid" style="max-height: 80px;" id="responsive-logo"></a>
                             </div>
                             <!-- Main-menu -->
                             <div class="main-menu d-none d-md-block">
