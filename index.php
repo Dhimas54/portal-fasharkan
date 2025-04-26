@@ -1,75 +1,124 @@
 <?php
 session_start();
-include('includes/config.php');
+include('includes/config.php'); // koneksi DB
 ?>
 
+
 <style>
-    #saran-box {
+    /* === POPUP === */
+    .vote-popup {
         position: fixed;
-        bottom: 80px;
-        /* Lebih tinggi dari tombol scroll */
-        right: 20px;
-        width: 250px;
-        background-color: #fff;
-        border: 1px solid #ccc;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        padding: 15px;
-        z-index: 9999;
-        font-family: sans-serif;
+        bottom: 160px;
+        right: 30px;
+        z-index: 1000;
         display: none;
-        /* Kotak saran awalnya disembunyikan */
+        transform: translateY(20px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
     }
 
-    .saran-header {
+    #vote-box.show {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+
+    .vote-container {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        width: 280px;
+        overflow: hidden;
+        animation: slideUp 0.3s ease-out;
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .vote-header {
+        background: #000BAD;
+        color: #fff;
+        padding: 12px 16px;
         display: flex;
         justify-content: space-between;
         align-items: center;
         font-weight: bold;
-        margin-bottom: 10px;
     }
 
-    #close-saran {
-        background: none;
-        color: #000000;
-        border: none;
-        font-size: 18px;
-        cursor: pointer;
+    .vote-question {
+        padding: 16px;
+        font-size: 15px;
+        text-align: center;
+
+        margin: 0;
+    }
+
+    .vote-options {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0 16px 16px;
     }
 
     .vote-btn {
-        display: block;
-        width: 100%;
-        margin-top: 8px;
-        padding: 8px;
+        padding: 10px;
         border: none;
-        background-color: #000BAD;
-        color: white;
-        border-radius: 6px;
+        border-radius: 8px;
+        font-size: 15px;
         cursor: pointer;
-        font-size: 14px;
+        color: #000000;
+        transition: all 0.3s ease;
+        background-color: #f0f0f0;
+        font-weight: 500;
     }
 
     .vote-btn:hover {
-        background-color: #000980;
+        background-color: #000BAD;
+        color: #fff;
+        transform: scale(1.03);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    #user-saran {
-        resize: none;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        padding: 8px;
-        font-size: 14px;
-        font-family: sans-serif;
-        color: #333;
+    .vote-btn.selected {
+        background-color: #000BAD;
+        color: white;
     }
 
-    #send-saran {
-        background-color: #28a745;
+    .close-btn {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 20px;
+        cursor: pointer;
     }
 
-    #send-saran:hover {
-        background-color: rgb(7, 98, 27);
+    /* Notification */
+    .notification {
+        position: fixed;
+        bottom: 100px;
+        right: 20px;
+        background-color: #4caf50;
+        color: white;
+        padding: 12px 16px;
+        border-radius: 8px;
+        display: none;
+        opacity: 0;
+        transition: all 0.4s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .elfsight-app-77e1bea3-6f0f-4065-b003-64174f31761c {
+        max-width: 100%;
+        margin: 0 auto;
     }
 </style>
 
@@ -194,14 +243,14 @@ include('includes/config.php');
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="section-tittle mb-30">
-                                <h3>Berita Unggulan</h3>
+                                <h3>Berita Terkini</h3>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12">
                             <div class="weekly-news-active dot-style d-flex dot-style">
-                                <?php $query = mysqli_query($con, "select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by viewCounter desc LIMIT 8");
+                                <?php $query = mysqli_query($con, "select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by PostingDate desc LIMIT 8");
                                 while ($row = mysqli_fetch_array($query)) {
                                 ?>
                                     <div class="weekly-single">
@@ -228,7 +277,7 @@ include('includes/config.php');
 
         <!-- End Weekly-News -->
         <!-- Start Youtube -->
-        <div class="youtube-area video-padding">
+        <dßiv class="youtube-area video-padding">
             <div class="container">
                 <div class="row">
                     <div class="col-12">
@@ -257,21 +306,61 @@ include('includes/config.php');
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-lg-6">
-                            <div class="testmonial-nav text-center">
-                                <div class="single-video">
-                                    <iframe src="https://youtu.be/nmPR9xPrStw?si=zpg6w46Ox5-l_RGL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                    <div class="video-intro">
-                                        <h4>OVER THE HORIZON : PROFIL KODIKLATAL</h4>
-                                    </div>
-                                </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </dßiv>
+        <!-- End Start youtube -->
+
+        <!--   Weekly-News start -->
+        <div class="weekly-news-area pt-50">
+            <div class="container">
+                <div class="weekly-wrapper">
+                    <!-- section Tittle -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section-tittle mb-30">
+                                <h3>Berita Terpopuler </h3>
                             </div>
-                        </div> -->
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="weekly-news-active dot-style d-flex dot-style">
+                                <?php $query = mysqli_query($con, "select tblposts.id as pid,tblposts.PostTitle as posttitle,tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by viewCounter desc LIMIT 8");
+                                while ($row = mysqli_fetch_array($query)) {
+                                ?>
+                                    <div class="weekly-single">
+                                        <div class="weekly-img">
+                                            <img src="admin/postimages/<?php echo htmlentities($row['PostImage']); ?>" alt="<?php echo htmlentities($row['posttitle']); ?>">
+                                        </div>
+                                        <div class="weekly-caption">
+                                            <span class="color1" href="category.php?catid=<?php echo htmlentities($row['cid']) ?>"><?php echo htmlentities($row['category']); ?></span>
+                                            <h4><a href="details.php?nid=<?php echo htmlentities($row['pid']) ?>"><?php echo substr($row['posttitle'], 0, 50); ?>...</a></h4>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- End Start youtube -->
+
+        <!-- Instagram Feed dari Elfsight -->
+
+        <div class="weekly-news-area pt-30 pb-50">
+            <div class="container">
+                <div id="instagram-feed text_center">
+                    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                    <div class="elfsight-app-77e1bea3-6f0f-4065-b003-64174f31761c" data-elfsight-app-lazy></div>
+                </div>
+            </div>
+        </div>
+
+
 
     </main>
 
@@ -286,62 +375,150 @@ include('includes/config.php');
 
     <?php include('pages/script.php'); ?>
 
-    <!-- Kotak saran -->
-    <div id="saran-box">
-        <div class="saran-header">
-            <span>Beri Penilaian</span>
-            <button id="close-saran">×</button> <!-- Tombol Close -->
-        </div>
-        <div class="saran-content">
-            <p>Bagaimana menurutmu?</p>
-            <!-- Pilihan Vote -->
-            <button class="vote-btn" data-vote="puas">😊 Puas</button>
-            <button class="vote-btn" data-vote="cukup">😐 Cukup</button>
-            <button class="vote-btn" data-vote="tidak">😞 Tidak Puas</button>
-            <!-- Input untuk saran -->
-            <textarea id="user-saran" placeholder="Tulis saranmu di sini..." rows="4" style="width: 100%; margin-top: 10px; padding: 8px; border-radius: 6px;"></textarea>
-            <!-- Tombol Kirim -->
-            <button id="send-saran" class="vote-btn" style="background-color: #28a745; margin-top: 10px;">Kirim Saran</button>
+
+    <!-- Floating Vote Box -->
+    <div id="vote-box" class="vote-popup">
+        <div class="vote-container">
+            <div class="vote-header">
+                <span>Beri Penilaian</span>
+                <button id="close-vote" class="close-btn">×</button>
+            </div>
+            <div class="vote-content">
+                <p class="vote-question">Bagaimana pendapatmu?</p>
+                <div class="vote-options">
+                    <button class="vote-btn" data-vote="puas">😊 Puas</button>
+                    <button class="vote-btn" data-vote="cukup">😐 Cukup</button>
+                    <button class="vote-btn" data-vote="tidak">😞 Tidak Puas</button>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Notifikasi -->
+    <div id="vote-notification" class="notification">
+        <span id="notification-message"></span>
+    </div>
+
     <script>
-        // Fungsi untuk menutup kotak saran
-        document.getElementById('close-saran').addEventListener('click', function() {
-            document.getElementById('saran-box').style.display = 'none';
+        let voteBoxShown = false;
+
+        // Tombol close
+        document.getElementById("close-vote").addEventListener("click", function() {
+            const voteBox = document.getElementById("vote-box");
+            voteBox.classList.remove("show");
+            setTimeout(() => {
+                voteBox.style.display = "none";
+            }, 300); // biar animasinya smooth dulu
         });
 
-        // Menangani vote yang dipilih
-        document.querySelectorAll('.vote-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                const vote = this.getAttribute('data-vote');
-                alert('Vote kamu: ' + vote); // Bisa diganti dengan AJAX untuk kirim vote
-            });
-        });
+        function getCookies(name) {
+            const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            if (match) return match[2];
+            return null;
+        }
 
-        // Menangani kirim saran
-        document.getElementById('send-saran').addEventListener('click', function() {
-            const saran = document.getElementById('user-saran').value;
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const pageHeight = document.documentElement.scrollHeight;
 
-            if (saran.trim() === '') {
-                alert('Harap isi saran terlebih dahulu.');
-            } else {
-                // Kirim saran ke backend, misalnya menggunakan AJAX
-                alert('Saran kamu: ' + saran); // Sementara hanya alert saja
+            const alreadyVoted = getCookies("vote_done");
 
-                // Setelah kirim, kosongkan textarea
-                document.getElementById('user-saran').value = '';
-                document.getElementById('saran-box').style.display = 'none'; // Menutup kotak saran setelah kirim
+            if (!voteBoxShown && !alreadyVoted && scrollPosition > pageHeight * 0.6) {
+                document.getElementById('vote-box').style.display = 'block';
+                voteBoxShown = true;
             }
         });
-
-        // Menampilkan kotak saran setelah 10 detik
-        window.onload = function() {
-            setTimeout(function() {
-                document.getElementById('saran-box').style.display = 'block';
-            }, 10000); // 10 detik setelah halaman dimuat
-        };
     </script>
+
+    <script>
+        // Cookie Handler
+        function getCookie(name) {
+            const value = "; " + document.cookie;
+            const parts = value.split("; " + name + "=");
+            if (parts.length === 2) return parts.pop().split(";").shift();
+        }
+
+        function setCookie(name, value, days) {
+            const d = new Date();
+            d.setTime(d.getTime() + (days * 24 * 60 * 60 * 1000));
+            const expires = "expires=" + d.toUTCString();
+            document.cookie = name + "=" + value + ";" + expires + ";path=/";
+        }
+
+        function generateRandomID() {
+            return 'cid-' + Math.random().toString(36).substr(2, 9);
+        }
+
+        let cookieID = getCookie('cookie_id');
+        if (!cookieID) {
+            cookieID = generateRandomID();
+            setCookie('cookie_id', cookieID, 30);
+        }
+
+        // Fungsi notifikasi
+        function showNotification(message, type = 'success') {
+            const notif = document.getElementById('vote-notification');
+            const msg = document.getElementById('notification-message');
+            msg.innerText = message;
+            notif.style.backgroundColor = type === 'success' ? '#4caf50' : '#f44336';
+            notif.style.display = 'block';
+            notif.style.opacity = '1';
+
+            setTimeout(() => {
+                notif.style.opacity = '0';
+                setTimeout(() => notif.style.display = 'none', 300);
+            }, 3000);
+        }
+
+        // Handle vote click
+        document.querySelectorAll('.vote-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const voteType = this.getAttribute('data-vote');
+
+                // Kirim ke server
+                let formData = new URLSearchParams();
+                formData.append('vote_type', voteType);
+                formData.append('cookie_id', cookieID);
+
+                fetch('action/voting.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: formData.toString()
+                    })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log('Parsed JSON:', data);
+
+                        // Setelah berhasil vote, set cookie vote_done
+                        document.cookie = "vote_done=true; path=/; max-age=" + 60 * 60 * 24 * 30; // Berlaku 30 hari
+
+                        // Tutup popup setelah vote
+                        const voteBox = document.getElementById("vote-box");
+                        voteBox.classList.remove("show");
+                        setTimeout(() => {
+                            voteBox.style.display = "none";
+                        }, 300); // animasi smooth
+
+                        if (data.vote === 'success' || data.saran === 'saran_success') {
+                            showNotification('Terima kasih atas penilaiannya!', 'success');
+                        } else if (data.vote === 'already_voted') {
+                            showNotification('Kamu sudah memberikan penilaian.', 'error');
+                        } else if (data.saran === 'saran_already') {
+                            showNotification('Saran sudah diberikan sebelumnya.', 'error');
+                        } else {
+                            alert('Terjadi kesalahan. Silakan coba lagi.');
+                        }
+
+                        document.getElementById('saran-box').style.display = 'none';
+                    })
+
+            });
+        });
+    </script>
+
+
 
 
 </body>
