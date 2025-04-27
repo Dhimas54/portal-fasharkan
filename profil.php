@@ -33,7 +33,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <!-- Profil Fasharkan Surabaya -->
-                    <div class="about-right mb-90 text-center">
+                    <div class="about-right mb-90 text-left">
                         <div class="section-tittle mb-30 pt-30">
                             <h3>Profil Fasharkan Surabaya</h3>
                         </div>
@@ -45,7 +45,7 @@
                     </div>
 
                     <!-- Sejarah -->
-                    <div class="about-right mb-90 text-center">
+                    <div class="about-right mb-90 text-left">
                         <div class="section-tittle mb-30 pt-30">
                             <h3>Sejarah</h3>
                         </div>
@@ -61,10 +61,10 @@
                     </div>
 
                     <!-- Visi & Misi -->
-                    <div class="about-right mb-90 text-center">
-                        <div class="section-tittle mb-30 pt-30">
+                    <div class="about-right mb-90 text-left">
+                        <!-- <div class="section-tittle mb-30 pt-30">
                             <h3>Visi & Misi</h3>
-                        </div>
+                        </div> -->
                         <div class="about-prea">
                             <h4>Visi</h4>
                             <p>Untuk mewujudkan kesiapan serta kemampuan FASHARKAN SURABAYA dalam mendukung kegiatan harkan KRI/KAL yang akan melaksanakan operasi</p>
@@ -78,7 +78,7 @@
                     </div>
 
                     <!-- Struktur Organisasi -->
-                    <div class="about-right mb-90 text-center">
+                    <div class="about-right mb-90 text-left">
                         <div class="section-tittle mb-30 pt-30">
                             <!-- <h3>Struktur Organisasi</h3> -->
                         </div>

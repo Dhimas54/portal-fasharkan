@@ -1,5 +1,5 @@
 <div class="blog_right_sidebar">
-    <aside class="single_sidebar_widget search_widget">
+    <!-- <aside class="single_sidebar_widget search_widget">
         <form name="search" action="searchh.php" method="post">
             <div class="form-group">
                 <div class="input-group mb-3">
@@ -11,7 +11,7 @@
             </div>
             <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">Search</button>
         </form>
-    </aside>
+    </aside> -->
     <!-- Category -->
     <aside class="single_sidebar_widget post_category_widget">
         <h4 class="widget_title">Kategori</h4>

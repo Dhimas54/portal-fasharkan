@@ -1,0 +1,14 @@
+{
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",  // PHP Formatter
+        "editor.formatOnSave": true  // Format on save
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",  // Prettier Formatter for HTML
+        "editor.formatOnSave": true  // Format on save
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",  // Prettier Formatter for CSS
+        "editor.formatOnSave": true  // Format on save
+    }
+}
