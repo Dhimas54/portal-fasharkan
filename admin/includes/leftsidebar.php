@@ -73,10 +73,15 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Kotak Saran </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="vote.php">Vote </a></li>
-                                    <li><a href="manage-kotaksaran.php">Kotak Saran</a></li>
                                 </ul>
                             </li>
 
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Kafasharkan </span> <span class="menu-arrow"></span></a>
+                                <ul class="list-unstyled">
+                                    <li><a href="kafas.php">Kelola Data Kafas </a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->
