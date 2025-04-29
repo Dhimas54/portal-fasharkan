@@ -17,9 +17,7 @@
         <?php include('pages/topbar.php');?>
         <!-- Header End -->
     </header>
-    
 
-    <!--================Blog Area =================-->
     <section class="blog_area section-padding">
         <div class="container">
             <div class="row">
@@ -40,8 +38,33 @@
                                 $result = mysqli_query($con,$total_pages_sql);
                                 $total_rows = mysqli_fetch_array($result)[0];
                                 $total_pages = ceil($total_rows / $no_of_records_per_page);
-
-                                $query=mysqli_query($con,"select tblposts.id as pid,tblposts.PostTitle as posttitle, tblposts.viewCounter as viewcounter, tblposts.PostImage,tblcategory.CategoryName as category,tblcategory.id as cid,tblsubcategory.Subcategory as subcategory,tblposts.PostDetails as postdetails,tblposts.PostingDate as postingdate,tblposts.PostUrl as url from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join  tblsubcategory on  tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.Is_Active=1 order by tblposts.id desc  LIMIT $offset, $no_of_records_per_page");
+                                $query = mysqli_query($con, "
+                                SELECT 
+                                    tblposts.id AS pid,
+                                    tblposts.PostTitle AS posttitle, 
+                                    tblposts.viewCounter AS viewcounter, 
+                                    tblposts.PostImage,
+                                    tblcategory.CategoryName AS category,
+                                    tblcategory.id AS cid,
+                                    tblsubcategory.Subcategory AS subcategory,
+                                    tblposts.PostDetails AS postdetails,
+                                    tblposts.PostingDate AS postingdate,
+                                    tblposts.PostUrl AS url 
+                                FROM 
+                                    tblposts 
+                                LEFT JOIN 
+                                    tblcategory ON tblcategory.id = tblposts.CategoryId 
+                                LEFT JOIN  
+                                    tblsubcategory ON tblsubcategory.SubCategoryId = tblposts.SubCategoryId 
+                                WHERE 
+                                    tblposts.Is_Active = 1 
+                                    AND tblcategory.CategoryName = 'pelayanan publik' 
+                                ORDER BY 
+                                    tblposts.id DESC 
+                                LIMIT $offset, $no_of_records_per_page
+                            ");
+                           
+                            
                                 while ($row=mysqli_fetch_array($query)) {
                         ?>
                         <article class="blog_item">
@@ -100,7 +123,16 @@
             </div>
         </div>
     </section>
-    <!--================Blog Area =================-->
+
+
+
+
+
+
+
+
+
+
 
     <footer>
         <!-- Footer Start-->

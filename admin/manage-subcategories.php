@@ -34,7 +34,7 @@ if($_GET['action']=='perdel' && $_GET['scid'])
 <html lang="en">
     <head>
 
-        <title> Newsportal | Kelola Sub-Kategori</title>
+        <title>Kelola Sub-Kategori</title>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -43,6 +43,7 @@ if($_GET['action']=='perdel' && $_GET['scid'])
         <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <script src="assets/js/modernizr.min.js"></script>
 
     </head>

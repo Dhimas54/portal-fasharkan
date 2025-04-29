@@ -1,4 +1,3 @@
-
-                <footer class="footer text-right">
-                   <?php echo date('Y');?> © Developed by Bangsis United.
-                </footer>
+<footer class="footer text-right">
+   <?php echo date('Y'); ?> © Developed by Disinfolahta II .
+</footer>

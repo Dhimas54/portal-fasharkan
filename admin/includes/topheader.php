@@ -2,7 +2,7 @@
 
                 <!-- LOGO -->
                 <div class="topbar-left">
-                    <a href="#" class="logo"><span>Portal Berita<span></span></span><i class="mdi mdi-layers"></i></a>
+                    <a href="#" class="logo"><span>Admin<span></span></span><i class="mdi mdi-layers"></i></a>
                     <!-- Image logo -->
                     <!--<a href="index.html" class="logo">-->
                     <!--<span>-->

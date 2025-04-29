@@ -30,7 +30,7 @@ if (strlen($_SESSION['login']) == 0) {
     <html lang="en">
 
     <head>
-        <title> | Kelola Vote</title>
+        <title>Kelola Vote</title>
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/core.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/components.css" rel="stylesheet" type="text/css" />
@@ -39,6 +39,7 @@ if (strlen($_SESSION['login']) == 0) {
         <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <script src="assets/js/modernizr.min.js"></script>
     </head>
 

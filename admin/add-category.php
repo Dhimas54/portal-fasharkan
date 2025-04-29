@@ -31,7 +31,7 @@ $error="Something went wrong . Please try again.";
 <html lang="en">
     <head>
 
-        <title>Newsportal | Add Category</title>
+        <title>Tambah Kategori</title>
 
         <!-- App css -->
         <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -42,6 +42,7 @@ $error="Something went wrong . Please try again.";
         <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <script src="assets/js/modernizr.min.js"></script>
 
     </head>

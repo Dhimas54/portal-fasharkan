@@ -28,9 +28,9 @@ if (strlen($_SESSION['login']) == 0) {
         <meta name="author" content="Coderthemes">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/images/favico1.ico">
         <!-- App title -->
-        <title>Newsportal | Halaman Kontak</title>
+        <title> Halaman Kontak</title>
 
         <!-- Summernote css -->
         <link href="../plugins/summernote/summernote.css" rel="stylesheet" />
