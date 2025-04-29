@@ -1,4 +1,4 @@
-            <div class="left side-menu">
+<div class="left side-menu">
                 <div class="sidebar-inner slimscrollleft">
 
                     <!--- Sidemenu -->
@@ -11,13 +11,13 @@
                             </li>
 
                             <?php if ($_SESSION['utype'] == '1'): ?>
-                                <li class="has_sub">
+                                <!-- <li class="has_sub">
                                     <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Sub-admin </span> <span class="menu-arrow"></span></a>
                                     <ul class="list-unstyled">
                                         <li><a href="add-subadmins.php">Tambah admin</a></li>
                                         <li><a href="manage-subadmins.php">Kelola admin</a></li>
                                     </ul>
-                                </li>
+                                </li> -->
                             <?php endif; ?>
 
                             <li class="has_sub">
@@ -47,8 +47,7 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Posting(gambar) </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="post_gambar.php">Tambah gambar</a></li>
-                                    <li><a href="manage-gambar.php">Kelola gambar</a></li>
-                                    <li><a href="trash-gambar.php">Hapus gambar</a></li>
+                                    <li><a href="hapus_gambar.php">Kelola gambar</a></li>
                                 </ul>
                             </li>
 
@@ -73,15 +72,10 @@
                                 <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Kotak Saran </span> <span class="menu-arrow"></span></a>
                                 <ul class="list-unstyled">
                                     <li><a href="vote.php">Vote </a></li>
+                                    <li><a href="manage-kotaksaran.php">Kotak Saran</a></li>
                                 </ul>
                             </li>
 
-                            <li class="has_sub">
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-format-list-bulleted"></i> <span> Kafasharkan </span> <span class="menu-arrow"></span></a>
-                                <ul class="list-unstyled">
-                                    <li><a href="kafas.php">Kelola Data Kafas </a></li>
-                                </ul>
-                            </li>
                         </ul>
                     </div>
                     <!-- Sidebar -->

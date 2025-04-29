@@ -29,7 +29,7 @@ if (strlen($_SESSION['login']) == 0) {
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Portal Fasharkan | Kelola Postingan</title>
+        <title>Kelola Berita</title>
 
         <!--Morris Chart CSS -->
         <link rel="stylesheet" href="../plugins/morris/morris.css">
