@@ -6,16 +6,9 @@ if (strlen($_SESSION['login']) == 0) {
     header('location:index.php');
 } else {
     if (isset($_POST['update'])) {
-        $posttitle = $_POST['posttitle'];
-        $catid = $_POST['category'];
-        $subcatid = $_POST['subcategory'];
-        $postdetails = $_POST['postdescription'];
-        $lastuptdby = $_SESSION['login'];
-        $arr = explode(" ", $posttitle);
-        $url = implode("-", $arr);
-        $status = 1;
-        $postid = intval($_GET['pid']);
-        $query = mysqli_query($con, "update tblposts set PostTitle='$posttitle',CategoryId='$catid',SubCategoryId='$subcatid',PostDetails='$postdetails',PostUrl='$url',Is_Active='$status',lastUpdatedBy='$lastuptdby' where id='$postid'");
+        $name = $_POST['nama_kafas'];
+        $id = intval($_GET['pid']);
+        $query = mysqli_query($con, "UPDATE tblkafas SET nama='$name' WHERE id='$id'");
         if ($query) {
             $msg = "Post updated ";
         } else {
@@ -35,7 +28,7 @@ if (strlen($_SESSION['login']) == 0) {
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Newsportal | Tambah Post</title>
+        <title> Kafas</title>
 
         <!-- Summernote css -->
         <link href="../plugins/summernote/summernote.css" rel="stylesheet" />
@@ -57,18 +50,6 @@ if (strlen($_SESSION['login']) == 0) {
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
         <script src="assets/js/modernizr.min.js"></script>
-        <script>
-            function getSubCat(val) {
-                $.ajax({
-                    type: "POST",
-                    url: "get_subcategory.php",
-                    data: 'catid=' + val,
-                    success: function(data) {
-                        $("#subcategory").html(data);
-                    }
-                });
-            }
-        </script>
     </head>
 
 
@@ -94,16 +75,13 @@ if (strlen($_SESSION['login']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Edit Post </h4>
+                                    <h4 class="page-title">Edit Kafas </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="#">Admin</a>
                                         </li>
-                                        <li>
-                                            <a href="#"> Posts </a>
-                                        </li>
                                         <li class="active">
-                                            Tambah Post
+                                            Edit Kafasharkan
                                         </li>
                                     </ol>
                                     <div class="clearfix"></div>
@@ -133,8 +111,8 @@ if (strlen($_SESSION['login']) == 0) {
                         </div>
 
                         <?php
-                        $postid = intval($_GET['pid']);
-                        $query = mysqli_query($con, "select tblposts.id as postid,tblposts.PostImage,tblposts.PostTitle as title,tblposts.PostDetails,tblcategory.CategoryName as category,tblcategory.id as catid,tblsubcategory.SubCategoryId as subcatid,tblsubcategory.Subcategory as subcategory from tblposts left join tblcategory on tblcategory.id=tblposts.CategoryId left join tblsubcategory on tblsubcategory.SubCategoryId=tblposts.SubCategoryId where tblposts.id='$postid' and tblposts.Is_Active=1 ");
+                        $kafasid = intval($_GET['pid']);
+                        $query = mysqli_query($con, "SELECT * FROM tblkafas");
                         while ($row = mysqli_fetch_array($query)) {
                         ?>
                             <div class="row">
@@ -144,50 +122,15 @@ if (strlen($_SESSION['login']) == 0) {
                                             <form name="addpost" method="post">
                                                 <div class="form-group m-b-20">
                                                     <label for="exampleInputEmail1">Judul Post</label>
-                                                    <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['title']); ?>" name="posttitle" placeholder="Enter title" required>
+                                                    <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['nama']); ?>" name="nama_kafas" placeholder="Masukkan nama Kafasharkan" required>
                                                 </div>
-
-
-
-                                                <div class="form-group m-b-20">
-                                                    <label for="exampleInputEmail1">Kategori</label>
-                                                    <select class="form-control" name="category" id="category" onChange="getSubCat(this.value);" required>
-                                                        <option value="<?php echo htmlentities($row['catid']); ?>"><?php echo htmlentities($row['category']); ?></option>
-                                                        <?php
-                                                        // Feching active categories
-                                                        $ret = mysqli_query($con, "select id,CategoryName from  tblcategory where Is_Active=1");
-                                                        while ($result = mysqli_fetch_array($ret)) {
-                                                        ?>
-                                                            <option value="<?php echo htmlentities($result['id']); ?>"><?php echo htmlentities($result['CategoryName']); ?></option>
-                                                        <?php } ?>
-
-                                                    </select>
-                                                </div>
-
-                                                <div class="form-group m-b-20">
-                                                    <label for="exampleInputEmail1">Sub Kategori</label>
-                                                    <select class="form-control" name="subcategory" id="subcategory" required>
-                                                        <option value="<?php echo htmlentities($row['subcatid']); ?>"><?php echo htmlentities($row['subcategory']); ?></option>
-                                                    </select>
-                                                </div>
-
-
-                                                <div class="row">
-                                                    <div class="col-sm-12">
-                                                        <div class="card-box">
-                                                            <h4 class="m-b-30 m-t-0 header-title"><b>Isi Post</b></h4>
-                                                            <textarea class="summernote" name="postdescription" required><?php echo htmlentities($row['PostDetails']); ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
                                                 <div class="row">
                                                     <div class="col-sm-12">
                                                         <div class="card-box">
                                                             <h4 class="m-b-30 m-t-0 header-title"><b>Gambar</b></h4>
-                                                            <img src="postimages/<?php echo htmlentities($row['PostImage']); ?>" width="300" />
+                                                            <img src="assets/images/users/<?php echo htmlentities($row['foto']); ?>" width="300" />
                                                             <br />
-                                                            <a href="change-image.php?pid=<?php echo htmlentities($row['postid']); ?>">Update Image</a>
+                                                            <a href="change-image-kafas.php?pid=<?php echo htmlentities($row['id']); ?>">Update Image</a>
                                                         </div>
                                                     </div>
                                                 </div>

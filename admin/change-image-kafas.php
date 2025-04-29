@@ -19,16 +19,18 @@ if (strlen($_SESSION['login']) == 0) {
             //rename the image file
             $imgnewfile = md5($imgfile) . $extension;
             // Code for move image into directory
-            move_uploaded_file($_FILES["postimage"]["tmp_name"], "postimages/" . $imgnewfile);
-
-
-
-            $postid = intval($_GET['pid']);
-            $query = mysqli_query($con, "UPDATE tblposts SET PostImage='$imgnewfile' WHERE id='$postid'");
-            if ($query) {
-                $msg = "Post Feature Image updated ";
+            $upload_dir = __DIR__ . "/assets/images/users/";
+            if (move_uploaded_file($_FILES["postimage"]["tmp_name"], $upload_dir . $imgnewfile)) {
+                // upload berhasil
+                $id = intval($_GET['pid']);
+                $query = mysqli_query($con, "UPDATE tblkafas SET foto='$imgnewfile' WHERE id='$id'");
+                if ($query) {
+                    $msg = "Post Feature Image updated ";
+                } else {
+                    $error = "Database update failed.";
+                }
             } else {
-                $error = "Something went wrong . Please try again.";
+                $error = "Failed to upload image to the server.";
             }
         }
     }
@@ -45,7 +47,7 @@ if (strlen($_SESSION['login']) == 0) {
         <!-- App favicon -->
         <link rel="shortcut icon" href="assets/images/favicon.ico">
         <!-- App title -->
-        <title>Newsportal | Tambah Post</title>
+        <title>Edit Kafas</title>
 
         <!-- Summernote css -->
         <link href="../plugins/summernote/summernote.css" rel="stylesheet" />
@@ -67,18 +69,6 @@ if (strlen($_SESSION['login']) == 0) {
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
         <script src="assets/js/modernizr.min.js"></script>
-        <script>
-            function getSubCat(val) {
-                $.ajax({
-                    type: "POST",
-                    url: "get_subcategory.php",
-                    data: 'catid=' + val,
-                    success: function(data) {
-                        $("#subcategory").html(data);
-                    }
-                });
-            }
-        </script>
     </head>
 
 
@@ -107,16 +97,13 @@ if (strlen($_SESSION['login']) == 0) {
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">
-                                    <h4 class="page-title">Update Gambar </h4>
+                                    <h4 class="page-title">Update Foto Kafas </h4>
                                     <ol class="breadcrumb p-0 m-0">
                                         <li>
                                             <a href="#">Admin</a>
                                         </li>
                                         <li>
-                                            <a href="#"> Posts </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"> Edit Posts </a>
+                                            <a href="#"> Edit Kafas </a>
                                         </li>
                                         <li class="active">
                                             Update Image
@@ -150,7 +137,7 @@ if (strlen($_SESSION['login']) == 0) {
                         <form name="addpost" method="post" enctype="multipart/form-data">
                             <?php
                             $postid = intval($_GET['pid']);
-                            $query = mysqli_query($con, "select PostImage,PostTitle from tblposts where id='$postid' and Is_Active=1 ");
+                            $query = mysqli_query($con, "SELECT * FROM tblkafas");
                             while ($row = mysqli_fetch_array($query)) {
                             ?>
                                 <div class="row">
@@ -160,18 +147,14 @@ if (strlen($_SESSION['login']) == 0) {
                                                 <form name="addpost" method="post">
                                                     <div class="form-group m-b-20">
                                                         <label for="exampleInputEmail1">Judul Post</label>
-                                                        <input type="text" class="form-control" id="posttitle" value="<?php echo htmlentities($row['PostTitle']); ?>" name="posttitle" readonly>
+                                                        <input type="text" class="form-control" id="nama_kafas" value="<?php echo htmlentities($row['nama']); ?>" name="nama_kafas" readonly>
                                                     </div>
-
-
-
                                                     <div class="row">
                                                         <div class="col-sm-12">
                                                             <div class="card-box">
                                                                 <h4 class="m-b-30 m-t-0 header-title"><b>Gambar </b></h4>
-                                                                <img src="postimages/<?php echo htmlentities($row['PostImage']); ?>" width="300" />
+                                                                <img src="assets/images/users/<?php echo htmlentities($row['foto']); ?>" width="300" />
                                                                 <br />
-
                                                             </div>
                                                         </div>
                                                     </div>

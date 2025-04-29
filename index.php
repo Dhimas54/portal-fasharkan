@@ -193,20 +193,26 @@ include('includes/config.php'); // koneksi DB
                         </div>
                         <!-- Right content -->
                         <div class="col-lg-4">
-
                             <div class="card text-center shadow" style="max-width: 320px; margin: 0 auto; margin-bottom:40px;">
                                 <!-- Judul di atas foto -->
-                                <div class="card-header text-white border-0" style="background-color: #FF0C0A;">
-                                    <h6 class="fw-semibold" style="margin-bottom:0px; padding: 8px">Kepala Fasharkan Surabaya</h6>
+                                <div class="card-header border-0" style="background-color: #FF0C0A;">
+                                    <h6 class="fw-semibold" style="margin-bottom:0px; padding: 8px; color:#FFF !important;">Kepala Fasharkan Surabaya</h6>
                                 </div>
 
-                                <!-- Foto -->
-                                <img src="assets/img/elements/dummy-prod-1.jpg" class="card-img-top rounded shadow-sm mx-auto mt-4 mb-2" alt="Kafasharkan Surabaya" style="width: 90%; max-width: 280px;">
+                                <?php
+                                $kafas_query = mysqli_query($con, "SELECT * FROM tblkafas");
+                                while ($kafas = mysqli_fetch_array($kafas_query)) {
 
-                                <!-- Nama dan pangkat -->
-                                <div class="card-body">
-                                    <h6 class="card-title mb-0">Kolonel Laut (T) Martin Sitorus, S.T., M.Tr.Hanla.</h6>
-                                </div>
+                                ?>
+                                    <!-- Foto -->
+                                    <img src="admin/assets/images/users/<?= $kafas['foto'] ?>" class="card-img-top rounded shadow-sm mx-auto mt-4 mb-2" alt="Kafasharkan Surabaya" style="width: 90%; max-width: 280px;">
+
+                                    <!-- Nama dan pangkat -->
+                                    <div class="card-body">
+                                        <h6 class="card-title mb-0"><?= $kafas['nama'] ?></h6>
+                                    </div>
+
+                                <?php } ?>
                             </div>
 
                             <hr style="margin-bottom:40px;">
