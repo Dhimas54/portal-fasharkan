@@ -105,8 +105,6 @@ if (strlen($_SESSION['login']) == 0) {
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-
-
                         <div class="row">
                             <div class="col-xs-12">
                                 <div class="page-title-box">

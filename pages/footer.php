@@ -73,7 +73,7 @@
 
                     <!-- Footer vote stats -->
                     <div id="vote-stats-footer" class="container" style="padding: 20px 0;">
-                        <h5 class="text-left mb-4">Hasil Vote</h5>
+                        <h5 class="text-left mb-4" style="color:#FFF !important">Hasil Vote</h5>
                         <div class="row">
                             <!-- Total Votes -->
                             <div class="col-md-12">

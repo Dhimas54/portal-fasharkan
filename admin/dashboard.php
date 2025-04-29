@@ -33,13 +33,10 @@ if (strlen($_SESSION['login']) == 0) {
 
 
     <body class="fixed-left">
-
         <!-- Begin page -->
         <div id="wrapper">
-
             <!-- Top Bar Start -->
             <div class="topbar">
-
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="#" class="logo"><span>NP<span>Admin</span></span><i class="mdi mdi-layers"></i></a>
@@ -61,7 +58,6 @@ if (strlen($_SESSION['login']) == 0) {
             <!-- ========== Left Sidebar Start ========== -->
             <?php include('includes/leftsidebar.php'); ?>
             <!-- Left Sidebar End -->
-
             <!-- ============================================================== -->
             <!-- Start right Content here -->
             <!-- ============================================================== -->
