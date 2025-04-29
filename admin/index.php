@@ -41,7 +41,7 @@ echo "<script>alert('Invalid Details');</script>";
         <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css"/>
-
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <script src="assets/js/modernizr.min.js"></script>
         <style>
             body {

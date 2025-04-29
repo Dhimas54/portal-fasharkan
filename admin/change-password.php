@@ -50,6 +50,7 @@
         <link href="assets/css/pages.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
 		<link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
         
     </head>

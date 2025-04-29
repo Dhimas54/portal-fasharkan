@@ -33,7 +33,7 @@ $error="Something went wrong . Please try again.";
         <meta name="author" content="Coderthemes">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <!-- App title -->
         <title>Tentang</title>
 

@@ -14,14 +14,28 @@ if (strlen($_SESSION['login']) == 0) {
         $arr = explode(" ", $imagetitle);
         $url = implode("-", $arr);
         $imgfile = $_FILES["postimage"]["name"];
-        // get the image extension
-        $extension = substr($imgfile, strlen($imgfile) - 4, strlen($imgfile));
-        // allowed extensions
-        $allowed_extensions = array(".jpg", ".jpeg", ".png", ".gif");
-        // Validation for allowed extensions .in_array() function searches an array for a specific value.
-        if (!in_array($extension, $allowed_extensions)) {
-            echo "<script>alert('Invalid format. Only jpg / jpeg/ png /gif format allowed');</script>";
-        } else {
+$size = $_FILES["postimage"]["size"];
+$extension = "." . strtolower(pathinfo($imgfile, PATHINFO_EXTENSION)); // ✅ Fix penting
+
+$allowed_extensions = array(".jpg", ".jpeg", ".png", ".gif");
+
+if ($size > 20971520) {
+    echo "<script>
+        alert('Ukuran gambar terlalu besar. Maksimal 20MB');
+        window.location.href = 'post_gambar.php';
+    </script>";
+    exit;
+}
+
+if (!in_array($extension, $allowed_extensions)) {
+    echo "<script>
+        alert('Format Gambar Hanya .jpg / .jpeg / .png / .gif');
+        window.location.href = 'post_gambar.php';
+    </script>";
+    exit;
+}
+
+        else {
             //rename the image file
             $imgnewfile = md5($imgfile) . $extension;
             // Code for move image into directory
@@ -47,7 +61,7 @@ if (strlen($_SESSION['login']) == 0) {
         <meta name="author" content="Coderthemes">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/img/logo/logofs.png">
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <!-- App title -->
         <title>Posting Gambar</title>
 

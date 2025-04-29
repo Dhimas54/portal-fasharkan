@@ -27,6 +27,7 @@ if (strlen($_SESSION['login']) == 0) {
         <link href="assets/css/menu.css" rel="stylesheet" type="text/css" />
         <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="../plugins/switchery/switchery.min.css">
+        <link rel="shortcut icon" href="assets/images/favicon1.ico">
         <script src="assets/js/modernizr.min.js"></script>
 
     </head>

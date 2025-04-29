@@ -17,14 +17,20 @@ if (isset($_POST['submit'])) {
     $url = implode("-", $arr);
 
     $imgfile = $_FILES["postimage"]["name"];
-
+    $size = $_FILES["postimage"]["size"];
     // Perbaikan: ambil ekstensi dan ubah ke huruf kecil
     $extension = strtolower(pathinfo($imgfile, PATHINFO_EXTENSION));
     $extension = "." . $extension;
 
     // allowed extensions
     $allowed_extensions = array(".jpg", ".jpeg", ".png", ".gif");
-
+    if ($size > 20971520) {
+        echo "<script>
+            alert('Ukuran gambar terlalu besar. Maksimal 20MB');
+            window.location.href = 'add-post.php';
+        </script>";
+        exit;
+    }
     // Validasi ekstensi
     if (!in_array($extension, $allowed_extensions)) {
         echo "<script>alert('Invalid format. Only jpg / jpeg / png / gif format allowed');</script>";
@@ -57,7 +63,7 @@ if (isset($_POST['submit'])) {
         <meta name="author" content="Coderthemes">
 
         <!-- App favicon -->
-        <link rel="shortcut icon" href="assets/images/favicon.ico">
+        <link rel="icon" href="assets/images/favicon1.ico" type="image/x-icon">
         <!-- App title -->
         <title>Tambah Berita</title>
 
