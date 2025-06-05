@@ -289,7 +289,7 @@ include('includes/config.php'); // koneksi DB
                     <div class="col-12">
                         <div class="video-items-active">
                             <div class="video-items text-center">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/nmPR9xPrStw?si=tw8zc-YGLYKfl7k7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/yWe8lhoSpDg?si=-g2Tkh_DYdtDZKjZ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                             </div>
                             <div class="video-items text-center">
                                 <iframe width="560" height="315" src="https://www.youtube.com/embed/VLUTukodc0M?si=sySIV90g7ITnY8Ht" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -308,7 +308,7 @@ include('includes/config.php'); // koneksi DB
                                     <span class="color1">Video</span>
                                 </div>
                                 <div class="bottom-caption">
-                                    <h2>Kegiatan Magang Di Fasharkan Surabaya</h2>
+                                    <h2>Profil Fasharkan Surabaya</h2>
                                 </div>
                             </div>
                         </div>
